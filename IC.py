@@ -121,12 +121,12 @@ for epoch in range(epochs):
                     ps = torch.exp(logps)
                     top_p, top_class = ps.topk(1, dim=1)
                     equals = top_class == labels.view(*top_class.shape)
-                    accuracy += torch.mean(equals.type(torch.FloatTensor)).item()           
+                    accuracy += torch.sum(equals.type(torch.FloatTensor)).item()           
 
             print(f"Epoch {epoch+1}/{epochs}.. "
                   f"Train loss: {running_loss/print_every:.3f}.. "
                   f"Test loss: {test_loss/len(validloader):.3f}.. "
-                  f"Test accuracy: {accuracy/len(validloader):.3f}")
+                  f"Test accuracy: {accuracy.double()/len(validloader):.3f}")
             
             running_loss=0
             model.train()
