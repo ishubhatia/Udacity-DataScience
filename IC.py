@@ -126,7 +126,7 @@ for epoch in range(epochs):
             print(f"Epoch {epoch+1}/{epochs}.. "
                   f"Train loss: {running_loss/print_every:.3f}.. "
                   f"Test loss: {test_loss/len(validloader):.3f}.. "
-                  f"Test accuracy: {accuracy/len(validloader):.3f}")
+                  f"Test accuracy: {accuracy.double()/len(validloader):.3f}")
             
             running_loss=0
             model.train()
